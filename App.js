@@ -1,7 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
 import {
+  Alert,
   Dimensions,
+  Platform,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -9,9 +11,10 @@ import {
   useWindowDimensions,
 } from "react-native";
 import Greet from "./components/Greet";
+import CustomButton from "./components/CustomButton/CustomButton";
 const uniImage = require("./assets/uni.jpg");
 
-// there is no css inheritance in react native as in web, but inheritance from same type of components is possible as from text to text child component
+// its only work on ios devices
 
 export default function App() {
   const { width, height } = useWindowDimensions();
@@ -19,24 +22,36 @@ export default function App() {
   console.log("width: ", width, "height: ", height);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      {" "}
-      // its only work on ios devices
-      <View style={styles.container}>
-        <Text style={{ fontSize: width > 360 ? 30 : 24 }}>
-          lorem ipsum dfsdfsdf sdf sd fsd f sdfsdfsd f sdf sd f sd fsd f sd fsd{" "}
-        </Text>
-        <StatusBar backgroundColor="lightblue" />
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Text style={[styles.textColor, { fontSize: width > 360 ? 30 : 24 }]}>
+        lorem ipsum dfsdfsdf sdf sd fsd f sdfsdfsd f sdf sd f sd fsd f sd fsd{" "}
+      </Text>
+      <CustomButton
+        title="Press"
+        onPress={() => Alert.alert("button clicked")}
+      />
+      <StatusBar backgroundColor="lightblue" />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "lightblue",
+    backgroundColor: Platform.OS === "android" ? "lightblue" : "red",
   },
+  ...Platform.select({
+    android: {
+      textColor: {
+        color: "white",
+      },
+    },
+    ios: {
+      textColor: {
+        color: "green",
+      },
+    },
+  }),
   darkBg: {
     backgroundColor: "black",
   },
