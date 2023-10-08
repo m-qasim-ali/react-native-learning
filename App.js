@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import {
   ActivityIndicator,
+  Alert,
   Button,
   Image,
   ImageBackground,
@@ -18,11 +19,21 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   return (
     <View style={styles.container}>
-      <ActivityIndicator />
-      <ActivityIndicator size={"small"} />
-      <ActivityIndicator size={"large"} color={"midnightblue"} />
-      <ActivityIndicator animating={isLoading} />
-      <Button title="Load Data" onPress={() => setIsLoading(true)} />
+      <Button
+        title="Alert1"
+        onPress={() =>
+          Alert.alert("Invalid Data", "DOB Incorrect", [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+            },
+            {
+              text: "OK",
+              onPress: () => console.log("OK Pressed"),
+            },
+          ])
+        }
+      />
       <StatusBar backgroundColor="red" />
     </View>
   );
