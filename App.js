@@ -13,27 +13,14 @@ import {
   Text,
   View,
 } from "react-native";
+import Greet from "./components/Greet";
 const uniImage = require("./assets/uni.jpg");
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   return (
     <View style={styles.container}>
-      <Button
-        title="Alert1"
-        onPress={() =>
-          Alert.alert("Invalid Data", "DOB Incorrect", [
-            {
-              text: "Cancel",
-              onPress: () => console.log("Cancel Pressed"),
-            },
-            {
-              text: "OK",
-              onPress: () => console.log("OK Pressed"),
-            },
-          ])
-        }
-      />
+      <Greet name={"Qasim"} />
       <StatusBar backgroundColor="red" />
     </View>
   );
