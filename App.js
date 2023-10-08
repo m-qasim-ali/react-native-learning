@@ -17,7 +17,6 @@ import Greet from "./components/Greet";
 const uniImage = require("./assets/uni.jpg");
 
 export default function App() {
-  const [isLoading, setIsLoading] = useState(false);
   return (
     <View style={styles.container}>
       <Greet name={"Qasim"} />
@@ -28,10 +27,8 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // alignItems: "center",
-    // justifyContent: "center",
-    // padding: 20,
-    marginTop: 50,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
