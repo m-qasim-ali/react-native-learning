@@ -1,52 +1,41 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import {
+  Dimensions,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+} from "react-native";
 import Greet from "./components/Greet";
 const uniImage = require("./assets/uni.jpg");
 
 // there is no css inheritance in react native as in web, but inheritance from same type of components is possible as from text to text child component
 
 export default function App() {
-  const [window, setWindow] = useState(Dimensions.get("window"));
+  const { width, height } = useWindowDimensions();
 
-  useEffect(() => {
-    const subscription = Dimensions.addEventListener("change", () => {
-      setWindow(Dimensions.get("window"));
-    });
-
-    return () => subscription.remove();
-  });
-
-  const width = window.width;
-  const height = window.height;
   console.log("width: ", width, "height: ", height);
 
   return (
-    <View style={styles.container}>
-      <View
-        style={[
-          styles.box,
-          styles.lightBlueBg,
-          styles.boxShadow,
-          styles.androidElevation,
-          {
-            width: width > 360 ? "70%" : "90%",
-            height: width > 360 ? 250 : 300,
-          },
-        ]}
-      >
-        <Text style={{ fontSize: width > 360 ? 30 : 24 }}>Light Blue Box</Text>
+    <SafeAreaView style={{ flex: 1 }}>
+      {" "}
+      // its only work on ios devices
+      <View style={styles.container}>
+        <Text style={{ fontSize: width > 360 ? 30 : 24 }}>
+          lorem ipsum dfsdfsdf sdf sd fsd f sdfsdfsd f sdf sd f sd fsd f sd fsd{" "}
+        </Text>
+        <StatusBar backgroundColor="lightblue" />
       </View>
-      <StatusBar backgroundColor="red" />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: "lightblue",
   },
   darkBg: {
     backgroundColor: "black",
@@ -102,4 +91,21 @@ const styles = StyleSheet.create({
       >
         <Text>Light Green Box</Text>
       </View> */
+}
+
+{
+  /* <View
+  style={[
+    styles.box,
+    styles.lightBlueBg,
+    styles.boxShadow,
+    styles.androidElevation,
+    {
+      width: width > 360 ? "70%" : "90%",
+      height: width > 360 ? 250 : 300,
+    },
+  ]}
+>
+  <Text style={{ fontSize: width > 360 ? 30 : 24 }}>Light Blue Box</Text>
+</View>; */
 }
