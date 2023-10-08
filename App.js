@@ -3,6 +3,7 @@ import {
   Platform,
   SafeAreaView,
   StyleSheet,
+  Switch,
   Text,
   TextInput,
   View,
@@ -11,26 +12,18 @@ import { StatusBar } from "expo-status-bar";
 import GroupDataList from "./GroupData.json";
 
 export default function App() {
-  const [name, setName] = useState("");
+  const [isDark, setIsDark] = useState(false);
   return (
     <SafeAreaView style={styles.container}>
-      <TextInput
-        style={styles.input}
-        value={name}
-        onChangeText={setName}
-        // secureTextEntry={true}
-        autoCorrect={true}
-        autoComplete="username"
-        autoCapitalize="words"
-        keyboardType="default"
-        placeholder="Enter your name"
+      <Switch
+        value={isDark}
+        onValueChange={setIsDark}
+        trackColor={{ false: "red", true: "green" }}
+        thumbColor={"blue"}
       />
-      <TextInput
-        style={[styles.input, styles.multiline]}
-        placeholder="message"
-        multiline
-      />
-      <Text style={{ fontWeight: "bold" }}>My name: {name}</Text>
+      <Text style={{ fontWeight: "bold" }}>
+        Is Dark: {isDark ? "true" : "false"}
+      </Text>
       <StatusBar backgroundColor="red" />
     </SafeAreaView>
   );
@@ -42,15 +35,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5f5f5f",
     paddingTop: Platform.OS === "android" ? 50 : 0,
     paddingHorizontal: Platform.OS === "android" ? 10 : 0,
-  },
-  input: {
-    borderWidth: 1,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    marginBottom: 10,
-  },
-  multiline: {
-    height: 100,
-    textAlignVertical: "top",
   },
 });
