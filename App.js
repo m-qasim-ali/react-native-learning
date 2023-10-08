@@ -3,6 +3,7 @@ import {
   Button,
   Image,
   ImageBackground,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -13,11 +14,17 @@ const uniImage = require("./assets/uni.jpg");
 export default function App() {
   return (
     <View style={styles.container}>
-      <Button
-        title="click"
-        color="red"
-        onPress={() => console.log("Button pressed")}
-      />
+      <Pressable
+        onPress={() => console.log("Image pressed")}
+        onPressIn={() => console.log("Image pressed In")}
+        onPressOut={() => console.log("Image pressed Out")}
+        onLongPress={() => console.log("Image Long pressed")}
+      >
+        <Image source={uniImage} style={{ width: 300, height: 300 }} />
+      </Pressable>
+      <Pressable onPress={() => console.log("text pressed")}>
+        <Text style={{ fontSize: 30 }}>Welcome to React Native!</Text>
+      </Pressable>
     </View>
   );
 }
