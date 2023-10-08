@@ -17,29 +17,21 @@ export default function App() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <View style={styles.container}>
-      <Button title="press" onPress={() => setIsOpen(true)} />
-      <Modal
-        visible={isOpen}
-        animationType="slide"
-        onRequestClose={() => setIsOpen(false)}
-        presentationStyle="pageSheet"
-      >
-        <Text>
-          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
-          ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-          lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
-        </Text>
-        <Button title="close" onPress={() => setIsOpen(false)} />
-      </Modal>
+      <Text>
+        lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+        lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+        lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem
+      </Text>
+      <StatusBar backgroundColor="red" />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 20,
+    // flex: 1,
+    // alignItems: "center",
+    // justifyContent: "center",
+    // padding: 20,
   },
 });
