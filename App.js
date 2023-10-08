@@ -19,10 +19,10 @@ const uniImage = require("./assets/uni.jpg");
 export default function App() {
   return (
     <View style={styles.container}>
-      <View style={styles.lightBlueBox}>
+      <View style={[styles.box, styles.lightBlueBg]}>
         <Text>Light Blue Box</Text>
       </View>
-      <View style={styles.lightGreenBox}>
+      <View style={[styles.box, styles.lightGreenBg]}>
         <Text>Light Green Box</Text>
       </View>
       <StatusBar backgroundColor="red" />
@@ -36,16 +36,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  lightBlueBox: {
-    backgroundColor: "lightblue",
+  box: {
     width: 100,
     height: 100,
     padding: 20,
   },
-  lightGreenBox: {
+  lightBlueBg: {
+    backgroundColor: "lightblue",
+  },
+  lightGreenBg: {
     backgroundColor: "lightgreen",
-    width: 100,
-    height: 100,
-    margin: 20,
   },
 });
