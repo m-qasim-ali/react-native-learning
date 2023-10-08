@@ -1,36 +1,54 @@
+import React from "react";
+import { Platform, ScrollView, StyleSheet, View } from "react-native";
+import PokemonCard from "./components/PokemonCard";
 import { StatusBar } from "expo-status-bar";
-import { useEffect, useState } from "react";
-import {
-  Alert,
-  Dimensions,
-  Platform,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  useWindowDimensions,
-} from "react-native";
-import Greet from "./components/Greet";
-import CustomButton from "./components/CustomButton/CustomButton";
-const uniImage = require("./assets/uni.jpg");
 
-// its only work on ios devices
+const charmanderData = {
+  name: "Charmander",
+  image: require("./assets/pokemonImages/charmander.png"),
+  type: "Fire",
+  hp: 39,
+  moves: ["Scratch", "Ember", "Growl", "Leer"],
+  weaknesses: ["Water", "Rock"],
+};
+
+const squirtleData = {
+  name: "Squirtle",
+  image: require("./assets/pokemonImages/squirtle.png"), // Replace with the actual image path
+  type: "Water",
+  hp: 44,
+  moves: ["Tackle", "Water Gun", "Tail Whip", "Withdraw"],
+  weaknesses: ["Electric", "Grass"],
+};
+
+const bulbasaurData = {
+  name: "Bulbasaur",
+  image: require("./assets/pokemonImages/bulbasaur.png"), // Replace with the actual image path
+  type: "Grass",
+  hp: 45,
+  moves: ["Tackle", "Vine Whip", "Growl", "Leech Seed"],
+  weaknesses: ["Fire", "Ice", "Flying", "Psychic"],
+};
+
+const pikachuData = {
+  name: "Pikachu",
+  image: require("./assets/pokemonImages/pikachu.png"), // Replace with the actual image path
+  type: "Electric",
+  hp: 35,
+  moves: ["Quick Attack", "Thunderbolt", "Tail Whip", "Growl"],
+  weaknesses: ["Ground"],
+};
 
 export default function App() {
-  const { width, height } = useWindowDimensions();
-
-  console.log("width: ", width, "height: ", height);
-
   return (
     <View style={styles.container}>
-      <Text style={[styles.textColor, { fontSize: width > 360 ? 30 : 24 }]}>
-        lorem ipsum dfsdfsdf sdf sd fsd f sdfsdfsd f sdf sd f sd fsd f sd fsd{" "}
-      </Text>
-      <CustomButton
-        title="Press"
-        onPress={() => Alert.alert("button clicked")}
-      />
-      <StatusBar backgroundColor="lightblue" />
+      <ScrollView>
+        <PokemonCard {...charmanderData} />
+        <PokemonCard {...squirtleData} />
+        <PokemonCard {...bulbasaurData} />
+        <PokemonCard {...pikachuData} />
+      </ScrollView>
+      <StatusBar backgroundColor="red" />
     </View>
   );
 }
@@ -38,89 +56,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Platform.OS === "android" ? "lightblue" : "red",
-  },
-  ...Platform.select({
-    android: {
-      textColor: {
-        color: "white",
-      },
-    },
-    ios: {
-      textColor: {
-        color: "green",
-      },
-    },
-  }),
-  darkBg: {
-    backgroundColor: "black",
-  },
-  textWhite: {
-    color: "white",
-  },
-  box: {
-    padding: 20,
-    borderRadius: 10,
-    marginVertical: 10,
-    borderWidth: 2,
-    borderColor: "purple",
-    borderStyle: "dotted",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  lightBlueBg: {
-    backgroundColor: "lightblue",
-  },
-  lightGreenBg: {
-    backgroundColor: "lightgreen",
-  },
-  boxShadow: {
-    shadowColor: "red", // work on both ios and android
-    shadowOffset: { width: 10, height: 10 }, // work on ios only
-    shadowOpacity: 1, // work on ios only
-    shadowRadius: 20, // work on ios only
-  },
-  androidElevation: {
-    elevation: 20, // work on android only
+    backgroundColor: "#f5f5f5f",
+    paddingTop: Platform.OS === "android" ? 50 : 0,
+    paddingHorizontal: Platform.OS === "android" ? 10 : 0,
   },
 });
-
-{
-  /* <View
-        style={[
-          styles.box,
-          styles.lightBlueBg,
-          styles.boxShadow,
-          styles.androidElevation,
-        ]}
-      >
-        <Text>Light Blue Box</Text>
-      </View>
-      <View
-        style={[
-          styles.box,
-          styles.lightGreenBg,
-          styles.boxShadow,
-          styles.androidElevation,
-        ]}
-      >
-        <Text>Light Green Box</Text>
-      </View> */
-}
-
-{
-  /* <View
-  style={[
-    styles.box,
-    styles.lightBlueBg,
-    styles.boxShadow,
-    styles.androidElevation,
-    {
-      width: width > 360 ? "70%" : "90%",
-      height: width > 360 ? 250 : 300,
-    },
-  ]}
->
-  <Text style={{ fontSize: width > 360 ? 30 : 24 }}>Light Blue Box</Text>
-</View>; */
-}
