@@ -19,10 +19,24 @@ const uniImage = require("./assets/uni.jpg");
 export default function App() {
   return (
     <View style={styles.container}>
-      <View style={[styles.box, styles.lightBlueBg]}>
+      <View
+        style={[
+          styles.box,
+          styles.lightBlueBg,
+          styles.boxShadow,
+          styles.androidElevation,
+        ]}
+      >
         <Text>Light Blue Box</Text>
       </View>
-      <View style={[styles.box, styles.lightGreenBg]}>
+      <View
+        style={[
+          styles.box,
+          styles.lightGreenBg,
+          styles.boxShadow,
+          styles.androidElevation,
+        ]}
+      >
         <Text>Light Green Box</Text>
       </View>
       <StatusBar backgroundColor="red" />
@@ -37,14 +51,28 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   box: {
-    width: 100,
-    height: 100,
+    width: 250,
+    height: 250,
     padding: 20,
+    borderRadius: 10,
+    marginVertical: 10,
+    borderWidth: 2,
+    borderColor: "purple",
+    borderStyle: "dotted",
   },
   lightBlueBg: {
     backgroundColor: "lightblue",
   },
   lightGreenBg: {
     backgroundColor: "lightgreen",
+  },
+  boxShadow: {
+    shadowColor: "red", // work on both ios and android
+    shadowOffset: { width: 10, height: 10 }, // work on ios only
+    shadowOpacity: 1, // work on ios only
+    shadowRadius: 20, // work on ios only
+  },
+  androidElevation: {
+    elevation: 20, // work on android only
   },
 });
