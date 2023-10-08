@@ -1,53 +1,65 @@
 import React from "react";
-import { Platform, ScrollView, StyleSheet, View } from "react-native";
-import PokemonCard from "./components/PokemonCard";
+import {
+  FlatList,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { StatusBar } from "expo-status-bar";
-
-const charmanderData = {
-  name: "Charmander",
-  image: require("./assets/pokemonImages/charmander.png"),
-  type: "Fire",
-  hp: 39,
-  moves: ["Scratch", "Ember", "Growl", "Leer"],
-  weaknesses: ["Water", "Rock"],
-};
-
-const squirtleData = {
-  name: "Squirtle",
-  image: require("./assets/pokemonImages/squirtle.png"), // Replace with the actual image path
-  type: "Water",
-  hp: 44,
-  moves: ["Tackle", "Water Gun", "Tail Whip", "Withdraw"],
-  weaknesses: ["Electric", "Grass"],
-};
-
-const bulbasaurData = {
-  name: "Bulbasaur",
-  image: require("./assets/pokemonImages/bulbasaur.png"), // Replace with the actual image path
-  type: "Grass",
-  hp: 45,
-  moves: ["Tackle", "Vine Whip", "Growl", "Leech Seed"],
-  weaknesses: ["Fire", "Ice", "Flying", "Psychic"],
-};
-
-const pikachuData = {
-  name: "Pikachu",
-  image: require("./assets/pokemonImages/pikachu.png"), // Replace with the actual image path
-  type: "Electric",
-  hp: 35,
-  moves: ["Quick Attack", "Thunderbolt", "Tail Whip", "Growl"],
-  weaknesses: ["Ground"],
-};
+import DataList from "./data.json";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <PokemonCard {...charmanderData} />
-        <PokemonCard {...squirtleData} />
-        <PokemonCard {...bulbasaurData} />
-        <PokemonCard {...pikachuData} />
-      </ScrollView>
+      <FlatList
+        data={DataList}
+        renderItem={({ item }) => (
+          <View style={styles.cardContainer}>
+            <Text>{item.name}</Text>
+            <Text>{item.type}</Text>
+          </View>
+        )}
+        ItemSeparatorComponent={<View style={{ height: 16 }}></View>}
+        keyExtractor={(item) => item.id.toString()}
+        ListEmptyComponent={
+          <View
+            style={{
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              padding: 20,
+            }}
+          >
+            <Text style={{ fontSize: 24, fontWeight: "bold" }}>
+              No Item Found
+            </Text>
+          </View>
+        }
+        ListHeaderComponent={
+          <Text
+            style={{
+              fontWeight: "bold",
+              textAlign: "center",
+              marginBottom: 16,
+            }}
+          >
+            Pokemon List
+          </Text>
+        }
+        ListFooterComponent={
+          <Text
+            style={{
+              fontWeight: "bold",
+              textAlign: "center",
+              marginTop: 16,
+            }}
+          >
+            End of List
+          </Text>
+        }
+      />
       <StatusBar backgroundColor="red" />
     </View>
   );
@@ -59,5 +71,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5f5f5f",
     paddingTop: Platform.OS === "android" ? 50 : 0,
     paddingHorizontal: Platform.OS === "android" ? 10 : 0,
+  },
+  cardContainer: {
+    padding: 8,
+    backgroundColor: "white",
+    borderWidth: 2,
   },
 });
