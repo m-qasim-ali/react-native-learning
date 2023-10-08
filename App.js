@@ -3,17 +3,33 @@ import {
   FlatList,
   Platform,
   ScrollView,
+  SectionList,
   StyleSheet,
   Text,
   View,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import DataList from "./data.json";
+import GroupDataList from "./GroupData.json";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <FlatList
+      <SectionList
+        sections={GroupDataList}
+        ItemSeparatorComponent={() => <View style={{ height: 16 }}></View>}
+        SectionSeparatorComponent={() => <View style={{ height: 32 }}></View>}
+        renderSectionHeader={({ section }) => (
+          <Text style={{ fontWeight: "bold", fontSize: 24 }}>
+            {section.type}
+          </Text>
+        )}
+        renderItem={({ item }) => (
+          <View style={styles.cardContainer}>
+            <Text>{item}</Text>
+          </View>
+        )}
+      />
+      {/* <FlatList
         data={DataList}
         renderItem={({ item }) => (
           <View style={styles.cardContainer}>
@@ -59,7 +75,7 @@ export default function App() {
             End of List
           </Text>
         }
-      />
+      /> */}
       <StatusBar backgroundColor="red" />
     </View>
   );
